@@ -1,0 +1,61 @@
+# DE0-Nano project settings for Quartus Prime.
+# FPGA: Altera Cyclone IV E, EP4CE22F17C6.
+# Pin assignments below cover the on-board clock, LEDs, keys, and DIP switch.
+# Extend as needed for GPIO, ADC, accelerometer, EPCS, SDRAM, etc.
+
+set_global_assignment -name FAMILY "Cyclone IV E"
+set_global_assignment -name DEVICE EP4CE22F17C6
+set_global_assignment -name TOP_LEVEL_ENTITY blink
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION "22.1"
+set_global_assignment -name LAST_QUARTUS_VERSION "24.1std.0 Lite Edition"
+
+# ---- Source files ----
+set_global_assignment -name VERILOG_FILE ../src/blink.v
+
+# ---- Safety: don't drive unused pins ----
+set_global_assignment -name RESERVE_ALL_UNUSED_PINS "AS INPUT TRI-STATED"
+set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "3.3-V LVTTL"
+
+# ==========================================================================
+# Pin assignments (Terasic DE0-Nano user manual, rev A)
+# ==========================================================================
+
+# 50 MHz clock
+set_location_assignment PIN_R8  -to CLOCK_50
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to CLOCK_50
+
+# 8 user LEDs
+set_location_assignment PIN_A15 -to LED[0]
+set_location_assignment PIN_A13 -to LED[1]
+set_location_assignment PIN_B13 -to LED[2]
+set_location_assignment PIN_A11 -to LED[3]
+set_location_assignment PIN_D1  -to LED[4]
+set_location_assignment PIN_F3  -to LED[5]
+set_location_assignment PIN_B1  -to LED[6]
+set_location_assignment PIN_L3  -to LED[7]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LED[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LED[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LED[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LED[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LED[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LED[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LED[6]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LED[7]
+
+# 2 push buttons (active-low)
+set_location_assignment PIN_J15 -to KEY[0]
+set_location_assignment PIN_E1  -to KEY[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY[1]
+
+# 4-position DIP switch
+set_location_assignment PIN_M1  -to SW[0]
+set_location_assignment PIN_T8  -to SW[1]
+set_location_assignment PIN_B9  -to SW[2]
+set_location_assignment PIN_M15 -to SW[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[3]
+
+set_global_assignment -name RESERVE_ALL_UNUSED_PINS_NO_OUTPUT_GND "AS INPUT TRI-STATED"

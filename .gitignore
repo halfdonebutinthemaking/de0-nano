@@ -1,0 +1,32 @@
+# Quartus synthesis artefacts
+project/output_files/
+project/*.sof
+project/*.sld
+project/*.pof
+project/*_assignment_defaults.qdf
+project/db/
+project/incremental_db/
+project/*.rpt
+project/*.summary
+project/*.smsg
+project/*.done
+project/*.pin
+project/*.jdi
+project/*.qws
+project/*.sopcinfo
+project/*.pof
+
+# Multi-GB, licensed vendor blobs — never commit these
+instructions/*.run
+instructions/*.qdz
+instructions/*.par
+instructions/*.tar
+instructions/_extracted/
+# instructions/libccl_sqlite3.so is intentionally tracked (federunco patch)
+
+.claude/
+.obsidian/
+.vscode/
+
+# macOS
+.DS_Store
