@@ -129,7 +129,9 @@ make build
 ```
 
 Expected: ~2 minutes, ending with `Quartus Prime Full Compilation was
-successful. 0 errors, N warnings`, and `project/de0_nano.sof` appears.
+successful. 0 errors, N warnings`, and `samples/01_hello_world/de0_nano.sof`
+appears. (Add more designs under `samples/`; pick with
+`SAMPLE=samples/<name>`. `make list` shows what's available.)
 
 That `.sof` is the bitstream — ready to program to the board.
 
@@ -155,10 +157,21 @@ The 8 on-board LEDs should start doing a ~1.5 Hz sweep pattern (XOR'd
 with the DIP switches — flip them to see the pattern change without
 recompiling).
 
-Note: this programs the FPGA's SRAM, not its config flash — so the
-design is lost on power cycle. To burn it to the EPCS16 flash instead
-(non-volatile), use `openFPGALoader --write-flash -b de0nano
-project/de0_nano.sof`.
+Note: `make program` writes to the FPGA's SRAM, so the design is lost on
+power cycle. Fast (~5 sec), perfect for iteration.
+
+To make it survive a power cycle, burn it to the on-board **EPCS16
+config flash** (128 Mbit serial flash the FPGA loads from at boot):
+
+```sh
+make program-flash
+```
+
+This runs `quartus_cpf` inside the container to convert `.sof` → `.rpd`
+(raw programming data for the flash chip), then `openFPGALoader
+--write-flash` pushes it. Slower than `make program` (~30-60 sec) but
+the design is on the board until you overwrite it. Power-cycle the
+board after flashing to see the new config take effect.
 
 ## Everyday workflow (after setup)
 

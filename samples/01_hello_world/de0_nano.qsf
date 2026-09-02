@@ -9,8 +9,8 @@ set_global_assignment -name TOP_LEVEL_ENTITY blink
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION "22.1"
 set_global_assignment -name LAST_QUARTUS_VERSION "24.1std.0 Lite Edition"
 
-# ---- Source files ----
-set_global_assignment -name VERILOG_FILE ../src/blink.v
+# ---- Source files (paths relative to this .qsf) ----
+set_global_assignment -name VERILOG_FILE src/blink.v
 
 # ---- Safety: don't drive unused pins ----
 set_global_assignment -name RESERVE_ALL_UNUSED_PINS "AS INPUT TRI-STATED"

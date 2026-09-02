@@ -1,20 +1,26 @@
-# Quartus synthesis artefacts
-project/output_files/
-project/*.sof
-project/*.sld
-project/*.pof
-project/*_assignment_defaults.qdf
-project/db/
-project/incremental_db/
-project/*.rpt
-project/*.summary
-project/*.smsg
-project/*.done
-project/*.pin
-project/*.jdi
-project/*.qws
-project/*.sopcinfo
-project/*.pof
+# Per-sample build outputs (everything Quartus generates lands here)
+samples/*/built/
+
+# Safety nets in case a stray build artefact leaks to the sample root
+samples/*/db/
+samples/*/incremental_db/
+samples/*/output_files/
+samples/*/*.rpt
+samples/*/*.summary
+samples/*/*.smsg
+samples/*/*.done
+samples/*/*.pin
+samples/*/*.jdi
+samples/*/*.qws
+samples/*/*.sopcinfo
+samples/*/*.sof
+samples/*/*.sld
+samples/*/*.pof
+samples/*/*.jic
+samples/*/*.rpd
+samples/*/*.map
+samples/*/*.svf
+samples/*/*_assignment_defaults.qdf
 
 # Multi-GB, licensed vendor blobs — never commit these
 instructions/*.run
